@@ -1,0 +1,26 @@
+GET http://localhost:4000/
+
+###
+
+GET http://localhost:4000/1
+
+###
+POST http://localhost:4000/
+Content-Type: application/json
+
+{
+    "title": "Product 2",
+    "price": 766
+}
+
+###
+PATCH  http://localhost:4000/4
+Content-Type: application/json
+
+{
+    "title": "Product 3 updated",
+    "price": 722
+}
+
+###
+DELETE http://localhost:4000/2

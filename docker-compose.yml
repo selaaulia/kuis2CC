@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:  
+  frontend-ui:
+    image: selaaulia/react-web:latest
+    container_name: frontend-ui
+    environment:
+      - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
+    ports:
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+    depends_on:
+      - backend-api
+    networks:
+      - frontend  
+
+  backend-api:
+    image: selaaulia/backend-api:latest
+    container_name: backend-api
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DB_HOST=$MYSQLDB_HOST
+      - DB_USER=$MYSQLDB_USER
+      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - DB_NAME=$MYSQLDB_DATABASE
+      - DB_PORT=$MYSQLDB_DOCKER_PORT
+    stdin_open: true
+    tty: true
+    networks:
+      - backend
+      - frontend
+
+networks:
+  backend:
+    name: backend-network
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+  frontend:
+    name: frontend-network
