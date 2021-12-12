@@ -151,18 +151,6 @@ jobs:
           source: "project_react.sql"
           target: "./"
 
-      - name: 'Install mysql and import file sql'
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{env.INSTANCE_IP}}
-          username: opc
-          key: ${{secrets.OCI_KEY_FILE}}
-          script: |
-            sudo dnf install mysql-server
-            sudo systemctl start mysqld.service
-            sudo systemctl status mysqld
-            sudo systemctl enable mysqld
-
       - name: 'Running Docker Compose'
         uses: appleboy/ssh-action@master
         with:
