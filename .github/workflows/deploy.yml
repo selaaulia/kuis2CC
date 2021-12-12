@@ -162,7 +162,6 @@ jobs:
             sudo systemctl start mysqld.service
             sudo systemctl status mysqld
             sudo systemctl enable mysqld
-            sudo mysql -u ${{secrets.MYSQL_USERNAME}} -h ${{secrets.MYSQL_HOST}} -p ${{secrets.MYSQL_PASSWORD}} < ~/project_react.sql
 
       - name: 'Running Docker Compose'
         uses: appleboy/ssh-action@master
