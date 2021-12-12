@@ -2,7 +2,7 @@ version: '3.8'
 
 services:  
   frontend-ui:
-    image: selaaulia/react-web:latest
+    image: selaaulia/react-web-kuis2:latest
     container_name: frontend-ui
     environment:
       - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
